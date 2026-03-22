@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-code-explainer"
+version = "0.1.0"
+description = "🤖 AI Code Explainer — 一键解释任意代码，支持多语言、可视化"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov"]
+
+[project.scripts]
+ai-code-explainer = "cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

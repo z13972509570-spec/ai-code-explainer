@@ -16,8 +16,7 @@ class Visualizer:
             lines.append(f"    C{i}[(`{cls['name']}`)]")
         
         lines.append("```")
-        return "
-".join(lines)
+        return "\n".join(lines)
     
     def to_plantuml(self, parsed: Dict) -> str:
         """生成 PlantUML"""
@@ -33,5 +32,4 @@ class Visualizer:
             lines.append("}")
         
         lines.append("@enduml")
-        return "
-".join(lines)
+        return "\n".join(lines)

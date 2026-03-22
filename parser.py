@@ -47,5 +47,5 @@ class CodeParser:
                 "classes": classes,
                 "imports": imports,
             }
-        except SyntaxError:
+        except SyntaxError as e:
             return {"functions": [], "classes": [], "imports": [], "error": str(e)}
