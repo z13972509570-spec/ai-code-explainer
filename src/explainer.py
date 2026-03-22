@@ -1,6 +1,6 @@
 """代码解释器"""
 from typing import Dict
-from parser import CodeParser
+from .parser import CodeParser
 
 
 class Explainer:

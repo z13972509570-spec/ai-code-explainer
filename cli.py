@@ -2,8 +2,8 @@
 import sys
 import json
 import click
-from explainer import Explainer
-from visualizer import Visualizer
+from src.explainer import Explainer
+from src.visualizer import Visualizer
 
 
 @click.command()
@@ -26,7 +26,6 @@ def main(file_path: str, format: str):
         viz = Visualizer()
         click.echo(viz.to_plantuml(result))
     else:
-        # text 格式
         click.echo(f"# 📊 代码分析报告: {file_path}\n")
         click.echo(f"## 📝 概览")
         click.echo(result.get("summary", ""))
