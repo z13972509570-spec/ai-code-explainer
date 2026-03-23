@@ -6,7 +6,7 @@ Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 Requires-Dist: click>=8.0
 Provides-Extra: dev
-Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest>=7.0; extra == "dev"
 Requires-Dist: pytest-cov; extra == "dev"
 
 # 🤖 AI Code Explainer

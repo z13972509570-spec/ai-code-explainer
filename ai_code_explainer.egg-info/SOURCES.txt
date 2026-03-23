@@ -1,11 +1,5 @@
 README.md
 pyproject.toml
-./src/__init__.py
-./src/analyzer.py
-./src/explainer.py
-./src/main.py
-./src/parser.py
-./src/visualizer.py
 ai_code_explainer.egg-info/PKG-INFO
 ai_code_explainer.egg-info/SOURCES.txt
 ai_code_explainer.egg-info/dependency_links.txt

@@ -1,2 +1,2 @@
 [console_scripts]
-ai-code-explainer = cli:main
+ai-code-explainer = src.cli:main
