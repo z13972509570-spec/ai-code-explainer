@@ -4,35 +4,166 @@ Version: 0.1.0
 Summary: 🤖 AI Code Explainer — 一键解释任意代码，支持多语言、可视化
 Requires-Python: >=3.9
 Description-Content-Type: text/markdown
+Requires-Dist: click>=8.0
 Provides-Extra: dev
 Requires-Dist: pytest; extra == "dev"
 Requires-Dist: pytest-cov; extra == "dev"
 
-# AI Code Explainer
+# 🤖 AI Code Explainer
 
-> 💡 一键解释任意代码，生成可视化分析图
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 功能
+> 一键解释任意代码，生成可视化分析图
 
-- 🔍 代码语法分析
-- 📝 函数/变量解释
-- 📊 控制流可视化
-- 🔗 调用关系图
-- 💬 多语言支持
+## ✨ 功能特性
 
-## 使用
+| 功能 | 描述 |
+|------|------|
+| 🔍 **代码语法分析** | 自动解析函数、类、导入等结构 |
+| 📝 **智能解释生成** | 为每个函数/类生成中文解释 |
+| 📊 **Mermaid 图表** | 一键生成流程图，支持 GitHub 渲染 |
+| 🌿 **PlantUML 支持** | 生成类图，适合文档集成 |
+| 🖥️ **CLI 工具** | 命令行直接使用，支持多种输出格式 |
+| 🐍 **Python 库** | 作为 Python 包导入使用 |
+
+## 📦 安装
 
 ```bash
+# 从源码安装
+git clone https://github.com/z13972509570-spec/ai-code-explainer.git
+cd ai-code-explainer
 pip install -e .
-python -m ai_code_explainer explain "path/to/code.py"
 ```
 
-## API
+## 🚀 快速开始
+
+### 命令行使用
+
+```bash
+# 基础用法 - 分析代码文件
+ai-code-explainer mycode.py
+
+# 输出 JSON 格式
+ai-code-explainer mycode.py --format json
+
+# 生成 Mermaid 流程图
+ai-code-explainer mycode.py --format mermaid
+
+# 生成 PlantUML 类图
+ai-code-explainer mycode.py --format plantuml
+```
+
+### 作为 Python 库使用
 
 ```python
-from ai_code_explainer import CodeExplainer
+from src.explainer import Explainer
+from src.visualizer import Visualizer
 
-explainer = CodeExplainer()
+# 解析代码
+code = """
+import os
+
+class DataProcessor:
+    def process(self, data):
+        return [x * 2 for x in data]
+
+def transform(item):
+    return item.upper()
+"""
+
+explainer = Explainer()
 result = explainer.explain(code)
-print(result["explanation"])
+
+# 获取分析结果
+print(result["summary"])
+# 输出: 发现 2 个函数，1 个类，1 个导入
+
+print(result["explanations"])
+# 输出:
+# - 函数 `transform`: 接收参数 item，位于第 8 行
+# - 函数 `process`: 接收参数 self, data，位于第 5 行
+# - 类 `DataProcessor`: 定义在第 4 行
+
+# 生成可视化图表
+viz = Visualizer()
+print(viz.to_mermaid(result))
 ```
+
+## 📊 输出示例
+
+### Text 格式
+
+```
+# 📊 代码分析报告: example.py
+
+## 📝 概览
+发现 2 个函数，1 个类，1 个导入
+
+## 🔧 详情
+
+- 函数 `transform`: 接收参数 item，位于第 8 行
+- 函数 `process`: 接收参数 self, data，位于第 5 行
+- 类 `DataProcessor`: 定义在第 4 行
+```
+
+### Mermaid 格式
+
+```mermaid
+flowchart TD
+    F0[`transform()`]
+    F1[`process()`]
+    C0[(`DataProcessor`)]
+```
+
+### JSON 格式
+
+```json
+{
+  "functions": [
+    {"name": "transform", "lineno": 8, "args": ["item"]},
+    {"name": "process", "lineno": 5, "args": ["self", "data"]}
+  ],
+  "classes": [
+    {"name": "DataProcessor", "lineno": 4}
+  ],
+  "imports": ["os"],
+  "summary": "发现 2 个函数，1 个类，1 个导入"
+}
+```
+
+## 🛠️ 开发
+
+```bash
+# 安装开发依赖
+pip install -e .[dev]
+
+# 运行测试
+pytest tests/ -v
+
+# 运行测试 + 覆盖率
+pytest tests/ --cov=src --cov-report=html
+```
+
+## 📁 项目结构
+
+```
+ai-code-explainer/
+├── src/
+│   ├── __init__.py      # 包入口
+│   ├── parser.py        # 代码解析器
+│   ├── explainer.py     # 解释生成器
+│   └── visualizer.py    # 可视化生成器
+├── tests/               # 单元测试
+├── cli.py               # 命令行工具
+├── pyproject.toml       # 项目配置
+└── README.md
+```
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+## 📄 License
+
+MIT License - 详见 [LICENSE](LICENSE) 文件

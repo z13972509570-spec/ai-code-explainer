@@ -8,7 +8,9 @@ version = "0.1.0"
 description = "🤖 AI Code Explainer — 一键解释任意代码，支持多语言、可视化"
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+    "click>=8.0",
+]
 
 [project.optional-dependencies]
 dev = ["pytest", "pytest-cov"]
@@ -19,3 +21,6 @@ ai-code-explainer = "cli:main"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["src*"]
+
+[tool.setuptools.package-dir]
+"" = "."
